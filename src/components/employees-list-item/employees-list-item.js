@@ -1,13 +1,17 @@
 import './employees-list-item.css';
+import cn from 'classnames';
 
-const EmployeesListItem = () => {
+const EmployeesListItem = ({name, salary, bonus}) => {
+
     return (
         <li className="list-group-item d-flex justify-content-between">
-            <span className="list-group-item-label">John Smith</span>
-            <input type="text" className="list-group-item-input" defaultValue="1000$"/>
+            <span className="list-group-item-label">{name}</span>
+            <input type="text" className="list-group-item-input" defaultValue={salary + '$'}/>
             <div className='d-flex justify-content-center align-items-center'>
                 <button type="button"
-                    className="btn-cookie btn-sm ">
+                    className={cn('btn-sm', 'className', {
+                        'btn-cookie': bonus === true
+                    })}>
                     <i className="fas fa-cookie"></i>
                 </button>
 
