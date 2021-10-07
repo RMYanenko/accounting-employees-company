@@ -1,30 +1,9 @@
-import { Component } from "react";
 import "./employees-list-item.css";
 import cn from "classnames";
 
-class EmployeesListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      increase: false,
-      like: false,
-    };
-  }
+const EmployeesListItem = (props) => {
 
-  onIncrease = () => {
-    this.setState(({ increase }) => ({ increase: !increase }));
-  };
-
-  onLike = () => {
-    this.setState(({ like }) => ({
-      like: !like,
-    }));
-  };
-
-  render() {
-    const { name, salary, onDelete } = this.props;
-    const { increase } = this.state;
-    const { like } = this.state;
+    const { name, salary, onDelete, onToggleIncrease, onToggleRise, increase, rise } = props;
     return (
       <li
         className={cn(
@@ -34,13 +13,13 @@ class EmployeesListItem extends Component {
           "className",
           {
             increase: increase === true,
-            like: like === true,
+            rise: rise === true,
           }
         )}
       >
         <span
           className="list-group-item-label"
-          onClick={this.onLike}
+          onClick={onToggleRise}
         >
           {name}
         </span>
@@ -53,7 +32,7 @@ class EmployeesListItem extends Component {
           <button
             type="button"
             className="btn-cookie btn-sm"
-            onClick={this.onIncrease}
+            onClick={onToggleIncrease}
           >
             <i className="fas fa-cookie"></i>
           </button>
@@ -68,7 +47,6 @@ class EmployeesListItem extends Component {
         </div>
       </li>
     );
-  }
-}
+ }
 
 export default EmployeesListItem;
