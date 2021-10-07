@@ -21,11 +21,16 @@ class App extends Component {
   }
 
   deleteItem = (id) => {
-    this.setState(({data}) => {
-      const index = data.findIndex(elem => elem.id === id);
-      data.splice(index, 1);
-      return {data: data};
-    })
+    this.setState(({ data }) => {
+      const index = data.findIndex((elem) => elem.id === id);
+
+      const before = data.slice(0, index); //берем масив до ід
+      const after = data.slice(index + 1); // масив после ів удаляемого
+
+      const newArray = [...before, ...after];
+
+      return { data: newArray };
+    });
   };
 
   render() {
@@ -38,10 +43,7 @@ class App extends Component {
           <AppFilter />
         </div>
 
-        <EmployeesList
-          data={this.state.data}
-          onDelete={this.deleteItem}
-        />
+        <EmployeesList data={this.state.data} onDelete={this.deleteItem} />
         <EmployeesAddForm />
       </div>
     );
