@@ -10,10 +10,9 @@ const EmployeesListItem = (props) => {
           "list-group-item",
           "d-flex",
           "justify-content-between",
-          "className",
           {
             increase: increase === true,
-            rise: rise === true,
+            like: rise === true,
           }
         )}
       >
