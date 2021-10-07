@@ -18,18 +18,25 @@ class App extends Component {
         { name: "Gringo D.", salary: 1800, increase: true, like: false, id: 3 },
       ],
     };
+    this.maxId = 4;
   }
 
   deleteItem = (id) => {
     this.setState(({ data }) => {
-      const index = data.findIndex((elem) => elem.id === id);
+      return { data: data.filter((item) => item.id !== id) };
+    });
+  };
 
-      const before = data.slice(0, index); //берем масив до ід
-      const after = data.slice(index + 1); // масив после ів удаляемого
-
-      const newArray = [...before, ...after];
-
-      return { data: newArray };
+  addItem = (name, salary) => {
+    const newItem = {
+      name,
+      salary,
+      increase: false,
+      id: this.maxId++,
+    };
+    this.setState(({ data }) => {
+      const newData = [...data, newItem];
+      return { data: newData };
     });
   };
 
@@ -44,7 +51,7 @@ class App extends Component {
         </div>
 
         <EmployeesList data={this.state.data} onDelete={this.deleteItem} />
-        <EmployeesAddForm />
+        <EmployeesAddForm onAdd={this.addItem} />
       </div>
     );
   }
