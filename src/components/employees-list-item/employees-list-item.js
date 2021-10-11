@@ -3,7 +3,7 @@ import cn from "classnames";
 
 const EmployeesListItem = (props) => {
 
-    const { name, salary, onDelete, onToggleIncrease, onToggleRise, increase, rise } = props;
+    const { name, salary, onDelete, onToggleProp, increase, rise } = props;
     return (
       <li
         className={cn(
@@ -18,7 +18,8 @@ const EmployeesListItem = (props) => {
       >
         <span
           className="list-group-item-label"
-          onClick={onToggleRise}
+          onClick={onToggleProp}
+          data-toggle="rise"
         >
           {name}
         </span>
@@ -31,7 +32,8 @@ const EmployeesListItem = (props) => {
           <button
             type="button"
             className="btn-cookie btn-sm"
-            onClick={onToggleIncrease}
+            onClick={onToggleProp}
+            data-toggle="increase"
           >
             <i className="fas fa-cookie"></i>
           </button>
